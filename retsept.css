@@ -1,0 +1,175 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #e8e1d7;
+    padding: 30px 70px;
+    color: #333;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.logo {
+    font-weight: 600;
+    color: #b65a00;
+    font-size: 20px;
+}
+
+.add-btn {
+    background: #b65a00;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.breadcrumb {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.recipe-sh {
+    display: flex;
+    gap: 40px;
+}
+.left {
+    width: 45%;
+}
+
+.main-img {
+    width: 100%;
+    border-radius: 12px;
+}
+
+.gallery {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.gallery img {
+    width: 70px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.right {
+    width: 55%;
+}
+
+.input-ch{
+    margin: 0px;
+}
+
+.badge {
+    background: #f2d5b0;
+    color: #a65b00;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.right h1 {
+    margin: 10px 0;
+}
+
+.author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.author img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.author p {
+    font-size: 12px;
+    color: #777;
+}
+
+.info span {
+    margin-right: 20px;
+    font-size: 13px;
+    color: #555;
+}
+
+
+.ingredients {
+    background: #f3eee6;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+.ingredients h3 {
+    margin-bottom: 10px;
+}
+
+.ingredients ul li {
+    display: flex;
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+    gap: 20px;
+}
+
+.ingredients ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ingredients ul .texter{
+    display: flex;
+    flex-direction: column;
+    gap: 13.5px;
+}
+
+.ingredients ul li:last-child {
+    border: none;
+}
+
+
+.steps {
+    margin-top: 40px;
+}
+
+.steps h3 {
+    color: #999;
+    font-size: 13px;
+}
+
+.steps h2 {
+    margin: 10px 0 20px;
+}
+
+.step {
+    margin-bottom: 20px;
+    padding-left: 15px;
+    border-left: 3px solid #b65a00;
+}
+
+.step h4 {
+    color: #b65a00;
+    margin-bottom: 5px;
+}
