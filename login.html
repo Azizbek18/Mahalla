@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ro'yxatdan o'tish</title>
     <link rel="stylesheet" href="login.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -17,30 +18,30 @@
 
         <div class="input-group">
             <label>ISMINGIZ</label>
-            <input type="text" placeholder="Maftuna opa">
+            <input id="ism" type="text" placeholder="Maftuna opa">
         </div>
 
         <div class="input-group">
             <label>SHAHAR</label>
-            <input type="text" placeholder="Toshkent">
+            <input id="shahar" type="text" placeholder="Toshkent">
         </div>
 
         <div class="input-group">
             <label>TELEFON</label>
-            <input type="tel" placeholder="+998 90...">
+            <input id="tel" type="tel" placeholder="+998 90...">
         </div>
 
         <div class="input-group">
             <label>PAROL</label>
-            <input type="password" placeholder="Kamida 6 ta belgi">
+            <input id="parol" type="password" placeholder="Kamida 6 ta belgi">
         </div>
 
         <div class="input-group">
             <label>TASDIQLANG</label>
-            <input type="password">
+            <input id="tasdiq" type="password">
         </div>
 
-        <button class="btn">Hisob yaratish</button>
+        <button id="btn" onclick="Bosilganda()" class="btn">Hisob yaratish</button>
 
         <div class="login-link">
             <h4>Hisobingiz bormi?</h4> <a href="#">Kiring</a>
