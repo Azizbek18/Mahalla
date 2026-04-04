@@ -11,6 +11,51 @@ body {
     color: #333;
 }
 
+.inpit-ch {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #a65d1d;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.inpit-ch:checked {
+    background-color: #a65d1d;
+    transform: scale(1.1);
+}
+
+.inpit-ch:checked::after {
+    content: '✓';
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    left: 4px;
+    top: -2px;
+}
+
+.inpit-ch + span {
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.inpit-ch:checked + span {
+    color: #bbb;
+    text-decoration: line-through;
+    transform: translateX(5px); 
+}
+
+.checknox li label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width: 100%;
+}
+
 .navbar {
     display: flex;
     justify-content: space-between;

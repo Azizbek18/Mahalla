@@ -11,6 +11,41 @@ body {
     color: #333;
 }
 
+.navbar nav a {
+    cursor: pointer;
+    text-decoration: none;
+    color: #555; /* Odatiy rang */
+    transition: all 0.3s ease;
+    padding-bottom: 2px;
+}
+
+.navbar nav a:hover {
+    color: #a65d1d;
+    text-decoration: underline;
+}
+
+.navbar nav a.active {
+    color: #a65d1d;
+    font-weight: 600;
+}
+
+.tags span {
+    display: inline-block;
+    padding: 8px 18px;
+    margin: 5px;
+    background-color: #e9e2d7;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    color: #333;
+}
+
+.tags span:hover, .tags span.selected {
+    background-color: #a65d1d;
+    color: #ffffff; 
+}
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -73,6 +108,55 @@ nav .active {
     padding: 12px 18px;
     border-radius: 0 8px 8px 0;
     cursor: pointer;
+}
+
+.category button {
+    background: none;
+    border: none;
+    padding: 10px 5px;
+    font-size: 16px;
+    color: #555;
+    cursor: pointer;
+    position: relative;
+    transition: 0.3s;
+    font-family: 'Poppins', sans-serif;
+}
+
+.category button:hover {
+    color: #a65d1d;
+}
+
+.category button.active {
+    color: #a65d1d;
+    color: white;
+    font-weight: 600;
+}
+
+.category button.active::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: #a65d1d;
+    bottom: 0;
+    left: 0;
+}
+
+.navbar nav a {
+    text-decoration: none !important;
+    color: #555;
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.navbar nav a.active::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: #a65d1d;
+    bottom: 0;
+    left: 0;
 }
 
 .tags span {
@@ -196,6 +280,47 @@ nav .active {
     padding: 10px 15px 15px;
     font-size: 12px;
     color: #555;
+}
+
+.navbar nav a {
+    text-decoration: none;
+    color: #555; 
+    cursor: pointer;
+    display: inline-block;
+    padding-bottom: 5px; 
+    position: relative;
+    transition: 0.3s;
+}
+
+.navbar nav a:hover,
+.navbar nav a.active {
+    color: #a65d1d;
+}
+
+.navbar nav a.active::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #a65d1d; 
+    bottom: 0;
+    left: 0;
+}
+
+.tags span {
+    display: inline-block;
+    padding: 8px 18px;
+    margin: 5px;
+    background-color: #eee;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    color: #333;
+}
+
+.tags span.selected {
+    background-color: #a65d1d;
+    color: #ffffff;
 }
 
 .more {
