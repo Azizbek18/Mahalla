@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Yangi Retsept Qo'shish</title>
+    <link rel="stylesheet" href="yangi.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Yangi retsept</h1>
+        <p>Retseptingizni boshqa onajonlar bilan ulashing</p>
+      </header>
+
+      <div class="form-group">
+        <label>OVQAT NOMI</label>
+        <input
+          type="text"
+          placeholder="Masalan: Tandir kabob"
+          class="input-full"
+        />
+      </div>
+
+      <div class="form-group">
+        <label>KATEGORIYA</label>
+        <div class="category-buttons">
+          <button class="btn-category active">Milliy taomlar</button>
+          <button class="btn-category">Suyuq ovqatlar</button>
+          <button class="btn-category">Salatlar</button>
+          <button class="btn-category">Shirinliklar</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label>TAYYORLASH VAQTI</label>
+          <div class="time-inputs">
+            <input type="text" placeholder="Soat" />
+            <input type="text" placeholder="Daq" />
+          </div>
+        </div>
+        <div class="col">
+          <label>PORSIYA</label>
+          <div class="portion-selector">
+            <button class="btn-minus">−</button>
+            <span>4 kishi</span>
+            <button class="btn-plus">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>TAOM FOTOSURATI</label>
+        <div class="photo-upload">
+          <div class="icon"></div>
+          <p>Foto yuklash</p>
+        </div>
+      </div>
+
+      <div class="ingredients-section">
+        <div class="row-ingredients">
+          <div class="ing-name">
+            <label>MASALLIQ</label>
+            <input type="text" placeholder="Nomi" />
+          </div>
+          <div class="ing-qty">
+            <label>MIQDOR</label>
+            <input type="text" placeholder="0.0" />
+          </div>
+          <div class="ing-unit">
+            <label>O'LCHOV</label>
+            <select>
+              <option>Gramm</option>
+            </select>
+          </div>
+          <button class="btn-add">+ Qo'shish</button>
+        </div>
+
+        <ul class="ingredient-list">
+          <li>
+            <span class="dot"></span> Go'sht
+            <span class="val">600g <i class="delete-icon">🗑️</i></span>
+          </li>
+          <li>
+            <span class="dot"></span> Guruch
+            <span class="val">500g <i class="delete-icon">🗑️</i></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script src="./yangi.js"></script>
+  </body>
+</html>
