@@ -1,72 +1,180 @@
-// 1. Porsiya sonini boshqarish (+ va - tugmalari)
-const portionValue = document.querySelector('.portion-selector span');
-const btnMinus = document.querySelector('.btn-minus');
-const btnPlus = document.querySelector('.btn-plus');
-
-let count = 4; // Boshlang'ich qiymat
-
-btnPlus.addEventListener('click', () => {
-    count++;
-    portionValue.textContent = `${count} kishi`;
+// ====== KATEGORIYA (toggle active) ======
+document.querySelectorAll(".btn-category").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".btn-category")
+      .forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+  });
 });
 
-btnMinus.addEventListener('click', () => {
-    if (count > 1) {
-        count--;
-        portionValue.textContent = `${count} kishi`;
+
+// ====== PORSIYA ======
+let count = 4;
+const minus = document.querySelector(".btn-minus");
+const plus = document.querySelector(".btn-plus");
+const portionText = document.querySelector(".portion-selector span");
+
+function renderPortion() {
+  portionText.textContent = count + " kishi";
+}
+
+plus.onclick = () => {
+  count++;
+  renderPortion();
+};
+
+minus.onclick = () => {
+  if (count > 1) count--;
+  renderPortion();
+};
+
+
+// ====== INGREDIENT DELETE (universal) ======
+const list = document.querySelector(".ingredient-list");
+
+list.addEventListener("click", (e) => {
+  if (e.target.classList.contains("delete-icon")) {
+    e.target.closest("li").remove();
+  }
+});
+
+
+// ====== INGREDIENT ADD ======
+document.querySelector(".btn-add").addEventListener("click", () => {
+  const nameEl = document.querySelector(".ing-name input");
+  const qtyEl = document.querySelector(".ing-qty input");
+  const unitEl = document.querySelector(".ing-unit select");
+
+  let name = nameEl.value.trim();
+  let qty = qtyEl.value.trim();
+  let unit = unitEl.value;
+
+  if (!name || !qty) return;
+
+  // format (rasmga mos)
+  if (unit.toLowerCase().includes("gram")) unit = "g";
+
+  const li = document.createElement("li");
+
+  li.innerHTML = `
+    <span class="dot"></span>
+    ${name}
+    <span class="val">
+      ${qty}${unit}
+      <i class="delete-icon">🗑️</i>
+    </span>
+  `;
+
+  list.appendChild(li);
+
+  nameEl.value = "";
+  qtyEl.value = "";
+});
+
+
+// ====== STEP (1:1 UIga yaqin) ======
+const stepBtn = document.querySelector(".qosh-btn");
+
+stepBtn.addEventListener("click", () => {
+  const stepCount = document.querySelectorAll(".Section-4").length + 1;
+
+  const wrapper = document.createElement("section");
+  wrapper.className = "Section-4";
+
+  wrapper.innerHTML = `
+    <h1 class="a1-qad">${stepCount}-qadam</h1>
+    <div class="tayorlash-retsept">
+      <h1 class="tyyr-qdm">Tayyor qadam</h1>
+      <h1 class="masaliq" contenteditable="true">
+        Yangi qadam yozing...
+      </h1>
+    </div>
+  `;
+
+  stepBtn.before(wrapper);
+});
+
+
+// ====== STEP DELETE ICON QO‘SHISH ======
+function addDeleteToSteps() {
+  document.querySelectorAll(".Section-4").forEach(sec => {
+    if (!sec.querySelector(".step-delete")) {
+      const del = document.createElement("span");
+      del.className = "step-delete";
+      del.textContent = "🗑️";
+
+      del.onclick = () => sec.remove();
+
+      sec.querySelector(".a1-qad").appendChild(del);
     }
+  });
+}
+
+// sahifa yuklanganda ham ishlasin
+addDeleteToSteps();
+
+// yangi step qo‘shilganda ham ishlasin
+document.querySelector(".qosh-btn").addEventListener("click", () => {
+  setTimeout(addDeleteToSteps, 0);
 });
 
-// 2. Kategoriya tugmalarini tanlash (Active holati)
-const categoryButtons = document.querySelectorAll('.btn-category');
 
-categoryButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        categoryButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-    });
+// ====== BEKOR QILISH ======
+document.querySelector(".cancel-btn").addEventListener("click", () => {
+  if (confirm("Haqiqatan ham bekor qilmoqchimisiz?")) {
+    location.reload();
+  }
 });
 
-// 3. Masalliqlarni dinamik qo'shish va o'chirish
-const btnAddIngredient = document.querySelector('.btn-add');
-const ingredientList = document.querySelector('.ingredient-list');
 
-const ingNameInput = document.querySelector('.ing-name input');
-const ingQtyInput = document.querySelector('.ing-qty input');
-const ingUnitSelect = document.querySelector('.ing-unit select');
+// ====== SAQLASH ======
+document.querySelector(".save-btn").addEventListener("click", () => {
+  const title = document.querySelector("input[type='text']").value;
 
-btnAddIngredient.addEventListener('click', () => {
-    const name = ingNameInput.value.trim();
-    const qty = ingQtyInput.value.trim();
-    const unit = ingUnitSelect.value;
+  const ingredients = [];
+  document.querySelectorAll(".ingredient-list li").forEach(li => {
+    ingredients.push(li.innerText);
+  });
 
-    if (name !== "" && qty !== "") {
-        // Yangi <li> elementi yaratish
-        const li = document.createElement('li');
-        li.innerHTML = `
-            <span class="dot"></span> ${name} 
-            <span class="val">${qty}${unit === 'Gramm' ? 'g' : unit} <i class="delete-btn" style="cursor:pointer; margin-left:10px; font-style:normal;">🗑️</i></span>
-        `;
+  const steps = [];
+  document.querySelectorAll(".masaliq").forEach(s => {
+    steps.push(s.innerText);
+  });
 
-        // Ro'yxatga qo'shish
-        ingredientList.appendChild(li);
+  const data = {
+    title,
+    ingredients,
+    steps
+  };
 
-        // Inputlarni tozalash
-        ingNameInput.value = "";
-        ingQtyInput.value = "";
-
-        // O'chirish funksiyasini biriktirish
-        li.querySelector('.delete-btn').addEventListener('click', () => {
-            li.remove();
-        });
-    } else {
-        alert("Iltimos, masalliq nomi va miqdorini kiriting!");
-    }
+  console.log("SAQLANDI:", data);
+  alert("Retsept saqlandi (console ga qarang)");
 });
 
-// Mavjud (default) elementlar uchun ham o'chirishni yoqish
-document.querySelectorAll('.delete-icon').forEach(icon => {
-    icon.addEventListener('click', (e) => {
-        e.target.closest('li').remove();
-    });
+// ====== FOTO UPLOAD (fake preview) ======
+const uploadBox = document.querySelector(".photo-upload");
+
+const inputFile = document.createElement("input");
+inputFile.type = "file";
+inputFile.accept = "image/*";
+inputFile.style.display = "none";
+
+uploadBox.appendChild(inputFile);
+
+uploadBox.addEventListener("click", () => {
+  inputFile.click();
+});
+
+inputFile.addEventListener("change", () => {
+  const file = inputFile.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    uploadBox.innerHTML = `
+      <img src="${e.target.result}" 
+           style="max-width:100%; border-radius:10px;" />
+    `;
+  };
+  reader.readAsDataURL(file);
 });
