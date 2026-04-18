@@ -510,6 +510,160 @@ select {
     }
 }
 
+/* Umumiy animatsiyalar uchun */
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+body {
+    background-color: #FFFBF2;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+    transition: all 0.3s ease;
+}
+
+.container {
+    width: 100%;
+    max-width: 700px;
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* Karta ko'rinishidagi konteynerlar */
+.bid_con, .Section-4 {
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.bid_con:hover {
+    transform: translateY(-5px);
+}
+
+/* Input va Buttonlar uchun interaktivlik */
+input, select {
+    background-color: #F1F1F1;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 12px 15px;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #48C9B0;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(72, 201, 176, 0.2);
+}
+
+.btn-category {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: #F1F1F1;
+    color: #666;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-category:hover {
+    transform: scale(1.05);
+}
+
+.btn-category.active {
+    background-color: #48C9B0;
+    color: white;
+    box-shadow: 0 4px 12px rgba(72, 201, 176, 0.4);
+}
+
+/* Porsiya selektori animatsiyasi */
+.portion-selector button {
+    transition: all 0.2s active;
+}
+
+.portion-selector button:active {
+    transform: scale(0.9);
+}
+
+/* Ingredient list animatsiyasi */
+.ingredient-list li {
+    animation: slideIn 0.4s ease forwards;
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    background-color: #F7F3EA;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.ingredient-list li:hover {
+    border-color: #D35400;
+    background-color: #fff;
+}
+
+/* Rasm yuklash joyi */
+.photo-upload {
+    border: 2px dashed #D3540033;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.photo-upload:hover {
+    background-color: #FFF5F0;
+    border-color: #D35400;
+}
+
+/* Qadam qo'shish tugmasi */
+.qosh-btn {
+    width: 100%;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px dashed #8D4B0033;
+}
+
+.qosh-btn:hover {
+    background-color: #8D4B0011;
+    border-style: solid;
+    transform: scale(1.01);
+}
+
+/* Saqlash tugmasi */
+.save-btn {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.save-btn:hover {
+    background: #6D3A00;
+    box-shadow: 0 5px 15px rgba(141, 75, 0, 0.4);
+}
+
+/* O'chirish ikonkasi animatsiyasi */
+.delete-icon, .step-delete {
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.delete-icon:hover, .step-delete:hover {
+    color: #e74c3c;
+    transform: scale(1.2) rotate(10deg);
+}
+
 .text {
     translate: 2% -6%;
     letter-spacing: 0.01ch;

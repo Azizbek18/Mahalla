@@ -1,180 +1,183 @@
-// ====== KATEGORIYA (toggle active) ======
-document.querySelectorAll(".btn-category").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll(".btn-category")
-      .forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-  });
-});
+document.addEventListener("DOMContentLoaded", () => {
+    // ====== 1. KATEGORIYA TANLASH ======
+    const categoryBtns = document.querySelectorAll(".btn-category");
+    categoryBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            categoryBtns.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            // Kichik bosish animatsiyasi
+            btn.style.transform = "scale(0.95)";
+            setTimeout(() => btn.style.transform = "scale(1)", 100);
+        });
+    });
 
+    // ====== 2. PORSIYA (KISHI SONI) ======
+    let count = 4;
+    const minusBtn = document.querySelector(".btn-minus");
+    const plusBtn = document.querySelector(".btn-plus");
+    const portionText = document.querySelector(".portion-selector span");
 
-// ====== PORSIYA ======
-let count = 4;
-const minus = document.querySelector(".btn-minus");
-const plus = document.querySelector(".btn-plus");
-const portionText = document.querySelector(".portion-selector span");
-
-function renderPortion() {
-  portionText.textContent = count + " kishi";
-}
-
-plus.onclick = () => {
-  count++;
-  renderPortion();
-};
-
-minus.onclick = () => {
-  if (count > 1) count--;
-  renderPortion();
-};
-
-
-// ====== INGREDIENT DELETE (universal) ======
-const list = document.querySelector(".ingredient-list");
-
-list.addEventListener("click", (e) => {
-  if (e.target.classList.contains("delete-icon")) {
-    e.target.closest("li").remove();
-  }
-});
-
-
-// ====== INGREDIENT ADD ======
-document.querySelector(".btn-add").addEventListener("click", () => {
-  const nameEl = document.querySelector(".ing-name input");
-  const qtyEl = document.querySelector(".ing-qty input");
-  const unitEl = document.querySelector(".ing-unit select");
-
-  let name = nameEl.value.trim();
-  let qty = qtyEl.value.trim();
-  let unit = unitEl.value;
-
-  if (!name || !qty) return;
-
-  // format (rasmga mos)
-  if (unit.toLowerCase().includes("gram")) unit = "g";
-
-  const li = document.createElement("li");
-
-  li.innerHTML = `
-    <span class="dot"></span>
-    ${name}
-    <span class="val">
-      ${qty}${unit}
-      <i class="delete-icon">🗑️</i>
-    </span>
-  `;
-
-  list.appendChild(li);
-
-  nameEl.value = "";
-  qtyEl.value = "";
-});
-
-
-// ====== STEP (1:1 UIga yaqin) ======
-const stepBtn = document.querySelector(".qosh-btn");
-
-stepBtn.addEventListener("click", () => {
-  const stepCount = document.querySelectorAll(".Section-4").length + 1;
-
-  const wrapper = document.createElement("section");
-  wrapper.className = "Section-4";
-
-  wrapper.innerHTML = `
-    <h1 class="a1-qad">${stepCount}-qadam</h1>
-    <div class="tayorlash-retsept">
-      <h1 class="tyyr-qdm">Tayyor qadam</h1>
-      <h1 class="masaliq" contenteditable="true">
-        Yangi qadam yozing...
-      </h1>
-    </div>
-  `;
-
-  stepBtn.before(wrapper);
-});
-
-
-// ====== STEP DELETE ICON QO‘SHISH ======
-function addDeleteToSteps() {
-  document.querySelectorAll(".Section-4").forEach(sec => {
-    if (!sec.querySelector(".step-delete")) {
-      const del = document.createElement("span");
-      del.className = "step-delete";
-      del.textContent = "🗑️";
-
-      del.onclick = () => sec.remove();
-
-      sec.querySelector(".a1-qad").appendChild(del);
+    if (plusBtn && minusBtn) {
+        plusBtn.onclick = () => {
+            count++;
+            updatePortion();
+        };
+        minusBtn.onclick = () => {
+            if (count > 1) {
+                count--;
+                updatePortion();
+            }
+        };
     }
-  });
-}
 
-// sahifa yuklanganda ham ishlasin
-addDeleteToSteps();
+    function updatePortion() {
+        portionText.textContent = count + " kishi";
+        portionText.style.animation = "fadeIn 0.3s ease";
+        setTimeout(() => portionText.style.animation = "", 300);
+    }
 
-// yangi step qo‘shilganda ham ishlasin
-document.querySelector(".qosh-btn").addEventListener("click", () => {
-  setTimeout(addDeleteToSteps, 0);
-});
+    // ====== 3. MASALLIQ QO'SHISH ======
+    const addIngBtn = document.querySelector(".btn-add");
+    const ingList = document.querySelector(".ingredient-list");
 
+    if (addIngBtn) {
+        addIngBtn.addEventListener("click", () => {
+            const nameInp = document.querySelector(".ing-name input");
+            const qtyInp = document.querySelector(".ing-qty input");
+            const unitSel = document.querySelector(".ing-unit select");
 
-// ====== BEKOR QILISH ======
-document.querySelector(".cancel-btn").addEventListener("click", () => {
-  if (confirm("Haqiqatan ham bekor qilmoqchimisiz?")) {
-    location.reload();
-  }
-});
+            const name = nameInp.value.trim();
+            const qty = qtyInp.value.trim();
+            let unit = unitSel.value;
 
+            if (!name || !qty) {
+                nameInp.style.border = "1px solid red";
+                setTimeout(() => nameInp.style.border = "none", 1000);
+                return;
+            }
 
-// ====== SAQLASH ======
-document.querySelector(".save-btn").addEventListener("click", () => {
-  const title = document.querySelector("input[type='text']").value;
+            if (unit.toLowerCase().includes("gramm")) unit = "g";
 
-  const ingredients = [];
-  document.querySelectorAll(".ingredient-list li").forEach(li => {
-    ingredients.push(li.innerText);
-  });
+            const li = document.createElement("li");
+            li.style.animation = "slideIn 0.4s ease forwards";
+            li.innerHTML = `
+                <span class="dot"></span>
+                <span style="flex:1; margin-left:10px;">${name}</span>
+                <span class="val">
+                    ${qty}${unit} 
+                    <i class="delete-icon">🗑️</i>
+                </span>
+            `;
 
-  const steps = [];
-  document.querySelectorAll(".masaliq").forEach(s => {
-    steps.push(s.innerText);
-  });
+            ingList.appendChild(li);
 
-  const data = {
-    title,
-    ingredients,
-    steps
-  };
+            // Tozalash
+            nameInp.value = "";
+            qtyInp.value = "";
+        });
+    }
 
-  console.log("SAQLANDI:", data);
-  alert("Retsept saqlandi (console ga qarang)");
-});
+    // ====== 4. MASALLIQNI O'CHIRISH (Delegatsiya orqali) ======
+    ingList.addEventListener("click", (e) => {
+        if (e.target.classList.contains("delete-icon")) {
+            const item = e.target.closest("li");
+            item.style.transform = "translateX(20px)";
+            item.style.opacity = "0";
+            setTimeout(() => item.remove(), 300);
+        }
+    });
 
-// ====== FOTO UPLOAD (fake preview) ======
-const uploadBox = document.querySelector(".photo-upload");
+    // ====== 5. BOSQICH (QADAM) QO'SHISH ======
+    const addStepBtn = document.querySelector(".qosh-btn");
 
-const inputFile = document.createElement("input");
-inputFile.type = "file";
-inputFile.accept = "image/*";
-inputFile.style.display = "none";
+    if (addStepBtn) {
+        addStepBtn.addEventListener("click", () => {
+            const stepSections = document.querySelectorAll(".Section-4");
+            const nextStep = stepSections.length + 1;
 
-uploadBox.appendChild(inputFile);
+            const newSection = document.createElement("section");
+            newSection.className = "Section-4";
+            newSection.style.animation = "slideIn 0.5s ease-out";
 
-uploadBox.addEventListener("click", () => {
-  inputFile.click();
-});
+            newSection.innerHTML = `
+                <div class="step-header" style="display:flex; justify-content:space-between; align-items:center;">
+                    <h1 class="a1-qad">${nextStep}-QADAM</h1>
+                    <span class="step-delete" style="cursor:pointer">🗑️</span>
+                </div>
+                <h1 class="tyyr-qdm">Tayyorlash jarayoni</h1>
+                <h1 class="masaliq" contenteditable="true" style="outline:none; cursor:text;">
+                    Yangi qadam tafsilotlarini kiriting...
+                </h1>
+            `;
 
-inputFile.addEventListener("change", () => {
-  const file = inputFile.files[0];
-  if (!file) return;
+            addStepBtn.before(newSection);
 
-  const reader = new FileReader();
-  reader.onload = (e) => {
-    uploadBox.innerHTML = `
-      <img src="${e.target.result}" 
-           style="max-width:100%; border-radius:10px;" />
-    `;
-  };
-  reader.readAsDataURL(file);
+            // Yangi qadam uchun o'chirish funksiyasi
+            newSection.querySelector(".step-delete").onclick = () => {
+                newSection.style.transform = "scale(0.9)";
+                newSection.style.opacity = "0";
+                setTimeout(() => newSection.remove(), 300);
+            };
+        });
+    }
+
+    // Dastlabki bor bo'lgan qadamlar uchun o'chirish tugmasini faollashtirish
+    document.querySelectorAll(".step-delete").forEach(btn => {
+        btn.onclick = (e) => {
+            const sec = e.target.closest(".Section-4");
+            sec.style.opacity = "0";
+            setTimeout(() => sec.remove(), 300);
+        };
+    });
+
+    // ====== 6. RASM YUKLASH ======
+    const photoBox = document.querySelector(".photo-upload");
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
+    fileInput.accept = "image/*";
+    fileInput.style.display = "none";
+    document.body.appendChild(fileInput);
+
+    if (photoBox) {
+        photoBox.onclick = () => fileInput.click();
+
+        fileInput.onchange = (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    photoBox.innerHTML = `
+                        <img src="${event.target.result}" 
+                             style="width:100%; height:100%; object-fit:cover; border-radius:15px; animation: fadeIn 0.5s;">
+                    `;
+                };
+                reader.readAsDataURL(file);
+            }
+        };
+    }
+
+    // ====== 7. SAQLASH VA BEKOR QILISH ======
+    const saveBtn = document.querySelector(".save-btn");
+    const cancelBtn = document.querySelector(".cancel-btn");
+
+    if (saveBtn) {
+        saveBtn.onclick = () => {
+            const dishName = document.querySelector(".input-full").value;
+            if(!dishName) return alert("Ovqat nomini kiriting!");
+            
+            saveBtn.innerHTML = "Saqlanmoqda...";
+            setTimeout(() => {
+                alert("Retsept muvaffaqiyatli saqlandi!");
+                saveBtn.innerHTML = "Saqlash";
+            }, 1000);
+        };
+    }
+
+    if (cancelBtn) {
+        cancelBtn.onclick = () => {
+            if(confirm("Barcha o'zgarishlar o'chib ketadi. Rozimisiz?")) {
+                location.reload();
+            }
+        };
+    }
 });
