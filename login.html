@@ -1,53 +1,59 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uz">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ro'yxatdan o'tish</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="login.css" />
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="container">
-        <div class="text">
-            <h2 class="rx">Ro'yxatdan o'ting</h2>
-            <h2 class="subtitle">Retseptlaringizni ulashing</h2>
-        </div>
+      <div class="text">
+        <h2 class="rx">Ro'yxatdan o'ting</h2>
+        <h2 class="subtitle">Retseptlaringizni ulashing</h2>
+      </div>
 
-        <div class="input-group">
-            <label>ISMINGIZ</label>
-            <input id="ism" type="text" placeholder="Maftuna opa">
-        </div>
+      <div class="input-group">
+        <label>ISMINGIZ</label>
+        <input id="ism" type="text" placeholder="Maftuna opa" />
+      </div>
 
-        <div class="input-group">
-            <label>SHAHAR</label>
-            <input id="shahar" type="text" placeholder="Toshkent">
-        </div>
+      <div class="input-group">
+        <label>EMAIL</label>
+        <input id="email" type="email" placeholder="example@gmail.com" />
+      </div>
 
-        <div class="input-group">
-            <label>TELEFON</label>
-            <input id="tel" type="tel" placeholder="+998 90...">
-        </div>
+      <div class="input-group">
+        <label>SHAHAR</label>
+        <input id="shahar" type="text" placeholder="Toshkent" />
+      </div>
 
-        <div class="input-group">
-            <label>PAROL</label>
-            <input id="parol" type="password" placeholder="Kamida 6 ta belgi">
-        </div>
+      <div class="input-group">
+        <label>TELEFON</label>
+        <input id="tel" type="tel" placeholder="+998 90..." />
+      </div>
 
-        <div class="input-group">
-            <label>TASDIQLANG</label>
-            <input id="tasdiq" type="password">
-        </div>
+      <div class="input-group">
+        <label>PAROL</label>
+        <input id="parol" type="password" placeholder="Kamida 6 ta belgi" />
+      </div>
 
-        <button id="btn" onclick="Bosilganda()" class="btn">Hisob yaratish</button>
+      <div class="input-group">
+        <label>TASDIQLANG</label>
+        <input id="tasdiq" type="password" />
+      </div>
 
-        <div class="login-link">
-            <h4>Hisobingiz bormi?</h4> <a href="#">Kiring</a>
-        </div>
+      <button id="btn" onclick="Bosilganda()" class="btn">
+        Hisob yaratish
+      </button>
+
+      <div class="login-link">
+        <h4>Hisobingiz bormi?</h4>
+        <a href="#">Kiring</a>
+      </div>
     </div>
     <script src="login.js"></script>
-</body>
-
+  </body>
 </html>

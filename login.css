@@ -138,3 +138,70 @@ label {
     font-size: 12px;
     color: #554336;
 }
+/* ✨ Fade animatsiya */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container {
+    animation: fadeUp 0.7s ease;
+}
+
+/* ✨ input focus */
+.input-group input:focus {
+    background: #fff;
+    box-shadow: 0 0 8px rgba(141,75,0,0.2);
+}
+
+/* ✨ button hover */
+.btn {
+    transition: 0.3s;
+}
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+/* 📱 TABLET */
+@media (max-width: 768px) {
+    body {
+        padding: 20px;
+        align-items: flex-start;
+    }
+
+    .container {
+        padding: 25px;
+        margin-top: 30px;
+    }
+}
+
+/* 📱 MOBILE */
+@media (max-width: 480px) {
+    body {
+        padding: 15px;
+    }
+
+    .container {
+        padding: 20px;
+    }
+
+    .rx {
+        font-size: 20px;
+    }
+
+    .input-group input {
+        height: 42px;
+        font-size: 14px;
+    }
+
+    .btn {
+        height: 42px;
+        font-size: 14px;
+    }
+}   

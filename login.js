@@ -1,38 +1,62 @@
-<<<<<<< HEAD
+const supabaseUrl = "https://xdoyebhkegroujpdxqzs.supabase.co";
+const supabaseKey = "sb_publishable_TlSnezCixeZg1SAO-wCBUw_ialkE5t9";
 
-=======
-let supabaseUrl = "https://wegghsekbxejorhbxxps.supabase.co"
-let supabaseKey = "sb_publishable_u6cBeMNhopmWCgF-WN7i-g_AEVMwVOH"
-
-const _supabase = supabase.createClient(supabaseUrl, supabaseKey)
+const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
 async function Bosilganda() {
-  let ismValue = document.getElementById('ism').value;
-  let parolValue = document.getElementById('parol').value;
-  let telValue = document.getElementById('tel').value;
-  let shaharValue = document.getElementById('shahar').value;
+    try {
+        const ism = document.getElementById('ism').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const parol = document.getElementById('parol').value.trim();
+        const tasdiq = document.getElementById('tasdiq').value.trim();
+        const tel = document.getElementById('tel').value.trim();
+        const shahar = document.getElementById('shahar').value.trim();
 
-  const { data, error } = await _supabase
-    .from('login_malumotlari')
-    .insert([
-      {
-        ism: ismValue,
-        parol: parseInt(parolValue), 
-        telefon: parseInt(telValue), 
-        shahar: shaharValue
-      }
-    ]);
-  if (error) {
-    console.error("Supabase xatosi:", error);
-    alert("Xatolik yuz berdi: " + error.message);
-  } else {
-    console.log("Muvaffaqiyatli saqlandi:", data);
-    alert("Ma'lumotlar bazaga yozildi!");
+        // 🔴 VALIDATION
+        if (!ism || !email || !parol || !tasdiq) {
+            alert("Barcha maydonlarni to‘ldiring!");
+            return;
+        }
 
-    document.getElementById('ism').value = '';
-    document.getElementById('parol').value = '';
-    document.getElementById('tel').value = '';
-    document.getElementById('shahar').value = '';
-  }
+        if (parol !== tasdiq) {
+            alert("Parollar mos emas!");
+            return;
+        }
+
+        if (parol.length < 6) {
+            alert("Parol kamida 6 ta belgi bo‘lsin!");
+            return;
+        }
+
+        // 🔥 SUPABASE INSERT
+        const { data, error } = await _supabase
+            .from('OnaRetsept')
+            .insert([
+                {
+                    ism: ism,
+                    email: email,
+                    parol: parol,
+                    telefon: tel,
+                    shahar: shahar
+                }
+            ]);
+
+        if (error) {
+            console.error(error);
+            alert("Xatolik: " + error.message);
+            return;
+        }
+
+        alert("Ro‘yxatdan o‘tildi!");
+
+        // 🔐 LOGIN UCHUN SAQLASH
+        localStorage.setItem("userEmail", email);
+        localStorage.setItem("userPassword", parol);
+
+        window.location.href = "index.html";
+
+    } catch (err) {
+        console.error(err);
+        alert("Internet yoki Supabase muammosi!");
+    }
 }
->>>>>>> 58586174fdbb49262d2c9bd56ad20ae2b84e60c6
