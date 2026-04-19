@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+
+=======
 let supabaseUrl = "https://wegghsekbxejorhbxxps.supabase.co"
 let supabaseKey = "sb_publishable_u6cBeMNhopmWCgF-WN7i-g_AEVMwVOH"
 
@@ -32,3 +35,4 @@ async function Bosilganda() {
     document.getElementById('shahar').value = '';
   }
 }
+>>>>>>> 58586174fdbb49262d2c9bd56ad20ae2b84e60c6
