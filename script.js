@@ -36,3 +36,23 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+function showToast(text, type = 'success', time = 3000) {
+    const container = document.getElementById('toast-container');
+    const toast = document.createElement('div');
+    
+    toast.className = `toast ${type}`;
+    toast.style.animationDuration = `${time}ms`; // Countdown vaqti
+    toast.innerText = text;
+
+    container.appendChild(toast);
+
+    // Vaqt tugagach silliq yo'qotish
+    setTimeout(() => {
+        toast.classList.add('hide');
+        setTimeout(() => toast.remove(), 400);
+    }, time);
+}
+
+// ISHLATISH NAMUNASI:
+// showToast("Tizimga kirdingiz!", "success");
+// showToast("Parol noto'g'ri!", "error", 5000);

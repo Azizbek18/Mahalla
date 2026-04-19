@@ -206,50 +206,79 @@ label {
     }
 }   
 
-/* TOAST CONTAINER */
 .toast {
     position: fixed;
     top: 20px;
     right: 20px;
-    min-width: 250px;
     padding: 15px 20px;
-    border-radius: 12px;
-    color: white;
-    font-family: Arial;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    color: #fff;
     transform: translateX(120%);
     transition: 0.4s ease;
     z-index: 9999;
+    min-width: 220px;
     overflow: hidden;
+    font-family: Arial;
 }
 
-/* SHOW */
-.toast.show {
-    transform: translateX(0);
+#toast-container {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    z-index: 9999;
 }
 
-/* SUCCESS */
-.toast.success {
-    background: #2ecc71;
+.toast {
+    background: #ffffff;
+    color: #333;
+    padding: 16px 28px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    font-weight: 500;
+    min-width: 280px;
+    position: relative;
+    overflow: hidden;
+    /* Silliq kirish */
+    animation: toastIn 0.4s ease forwards;
 }
 
-/* ERROR */
-.toast.error {
-    background: #e74c3c;
+.toast.hide {
+    /* Silliq chiqish */
+    animation: toastOut 0.4s ease forwards;
 }
 
-/* PROGRESS BAR */
-.progress {
+/* Countdown chizig'i (pastida) */
+.toast::after {
+    content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     height: 4px;
-    background: rgba(255,255,255,0.7);
     width: 100%;
-    animation: shrink 3s linear forwards;
+    animation: countdown linear forwards;
+    animation-duration: inherit; /* JS'dan keladi */
 }
 
-@keyframes shrink {
+/* Success va Error ranglari */
+.toast.success { border-left: 6px solid #2ecc71; }
+.toast.success::after { background: #2ecc71; }
+
+.toast.error { border-left: 6px solid #e74c3c; }
+.toast.error::after { background: #e74c3c; }
+
+/* Animatsiyalar */
+@keyframes toastIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes toastOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(120%); opacity: 0; }
+}
+
+@keyframes countdown {
     from { width: 100%; }
     to { width: 0%; }
 }

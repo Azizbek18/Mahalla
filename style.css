@@ -239,70 +239,66 @@ button:active {
     color: #FF7A00;
 }
 
-/* Xatolik holati uchun klass */
-.input-error {
-    animation: shake 0.4s ease-in-out;
-    border-color: #e74c3c !important;
+#toast-container {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    z-index: 9999;
 }
 
 .toast {
-    position: fixed;
-    top: 20px;
-    right: -350px;
-    width: 300px;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    padding: 15px;
-    z-index: 999;
-    transition: all 0.5s ease;
-}
-
-.toast.show {
-    right: 20px;
-}
-
-.toast.success {
-    border-left: 5px solid #27ae60;
-}
-
-.toast.error {
-    border-left: 5px solid #e74c3c;
-}
-
-.toast-content {
-    font-size: 14px;
+    background: #ffffff;
     color: #333;
-}
-
-.toast-timer {
-    margin-top: 8px;
-    height: 4px;
-    background: #ddd;
-    border-radius: 4px;
-    overflow: hidden;
+    padding: 16px 28px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    font-weight: 500;
+    min-width: 280px;
     position: relative;
+    overflow: hidden;
+    /* Silliq kirish */
+    animation: toastIn 0.4s ease forwards;
 }
 
-.toast-timer::after {
-    content: "";
+.toast.hide {
+    /* Silliq chiqish */
+    animation: toastOut 0.4s ease forwards;
+}
+
+/* Countdown chizig'i (pastida) */
+.toast::after {
+    content: '';
     position: absolute;
+    bottom: 0;
     left: 0;
-    top: 0;
-    height: 100%;
+    height: 4px;
     width: 100%;
-    background: #8D4B00;
     animation: countdown linear forwards;
+    animation-duration: inherit; /* JS'dan keladi */
+}
+
+/* Success va Error ranglari */
+.toast.success { border-left: 6px solid #2ecc71; }
+.toast.success::after { background: #2ecc71; }
+
+.toast.error { border-left: 6px solid #e74c3c; }
+.toast.error::after { background: #e74c3c; }
+
+/* Animatsiyalar */
+@keyframes toastIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes toastOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(120%); opacity: 0; }
 }
 
 @keyframes countdown {
-    from {
-        width: 100%;
-    }
-
-    to {
-        width: 0%;
-    }
+    from { width: 100%; }
+    to { width: 0%; }
 }
 
 /* =========================
