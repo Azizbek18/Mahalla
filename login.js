@@ -59,7 +59,7 @@ async function Bosilganda() {
 
     alert("Muvaffaqiyatli ro‘yxatdan o‘tdingiz!");
 
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 
   } catch (err) {
     console.error(err);

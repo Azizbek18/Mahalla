@@ -21,7 +21,9 @@ body {
     border-radius: 10px;
 }
 
-
+.form-text{
+    text-align: center;
+}
 
 input {
     width: 100%;
@@ -46,6 +48,9 @@ input {
     width: 64px;
     height: 64px;
     opacity: 1;
+}
+.login-link h4{
+   margin: 0;
 }
 
 button {

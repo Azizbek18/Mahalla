@@ -1,6 +1,15 @@
+:root {
+    --primary: #8D4B00;
+    --accent: #B15F00;
+    --bg-light: #FFFBF2;
+    --glass: rgba(255, 255, 255, 0.7); /* Sizning original glass rangiz */
+    --text-main: #1C1C17;
+    --text-sub: #554336;
+}
+
 * {
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
@@ -8,277 +17,152 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background: #FFFBF2;
+    min-height: 100vh;
+    background: #FFFBF2; /* Original fon */
+    padding: 10px;
+    overflow: hidden;
 }
 
+/* 3D Glass Konteyner */
 .container {
     width: 100%;
-    max-width: 420px;
-    gap: 32px;
-    opacity: 1;
-    border-radius: 12px;
-    border-width: 1px;
-    padding: 40px;
-    gap: 16px;
-    opacity: 1;
-    background-color: #FFFFFF;
-}
-
-.btn {
-    width: 100%;
-    height: 48px;
-    opacity: 1;
-    border-radius: 8px;
-    background: linear-gradient(45deg, #8D4B00 0%, #B15F00 100%);
-    box-shadow: 0px 1px 2px 0px #0000000D;
-    font-weight: 700;
-    font-style: Bold;
-    font-size: 16px;
-    line-height: 24px;
-    letter-spacing: 0px;
-    text-align: center;
-    vertical-align: middle;
-    color: #FFFFFF;
-    border: none;
-    margin-top: 16px;
-}
-
-.login-link h4 {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
-    letter-spacing: 0px;
-    text-align: center;
-    vertical-align: middle;
-    color: #554336;
-}
-
-.login-link{
-    width: 100%;
+    max-width: 380px;
+    padding: 20px 30px;
+    background: var(--glass);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 24px;
+    /* 3D chuqurlik effekti */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 
+                inset 0 0 10px rgba(255, 255, 255, 0.5);
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
+    flex-direction: column;
+    gap: 10px;
+    animation: fadeUp 0.7s ease-out;
 }
 
-.login-link a {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
-    letter-spacing: 0px;
+.text {
     text-align: center;
-    vertical-align: middle;
-    color: #8D4B00;
-    text-decoration: none;
+    margin-bottom: 5px;
+}
+.login-link h4{
+    margin: 0;
 }
 
 .rx {
     margin: 0;
-    font-weight: 700;
-    font-style: Bold;
     font-size: 24px;
-    line-height: 32px;
-    letter-spacing: 0px;
-    text-align: center;
-    vertical-align: middle;
-    color: #1C1C17;
+    color: var(--text-main);
+    font-weight: 700;
 }
 
 .subtitle {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
-    letter-spacing: 0px;
-    text-align: center;
-    vertical-align: middle;
-    color: #554336;
+    font-size: 13px;
+    color: var(--text-sub);
     margin: 0;
 }
 
-.text {
-    width: 100%;
-    height: 60px;
-    gap: 8px;
-    opacity: 1;
-}
-
+/* Ixcham Inputlar */
 .input-group {
     display: flex;
-    text-align: start;
     flex-direction: column;
-    width: 100%;
-    height: 70px;
-    gap: 6px;
-    opacity: 1;
+    gap: 3px;
+}
+
+label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--text-sub);
+    text-transform: uppercase;
+    margin-left: 5px;
 }
 
 .input-group input {
     width: 100%;
-    height: 48px;
-    opacity: 1;
-    padding-top: 15.5px;
-    padding-right: 16px;
-    padding-bottom: 15.5px;
-    padding-left: 40px;
-    border-radius: 8px;
-    background-color: #E6E2D9;
-    border: none;
+    height: 40px;
+    padding: 0 15px;
+    border-radius: 12px;
+    background-color: #E6E2D9; /* Original input rangi */
+    border: 1.5px solid transparent;
     outline: none;
-    color: #DBC2B0;
+    color: #000;
+    font-size: 14px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .input-group input::placeholder {
-    color: #DBC2B0;
+    color: rgba(0, 0, 0, 0.5);
 }
 
-label {
-    font-weight: 700;
-    font-style: Bold;
-    font-size: 12px;
-    color: #554336;
-}
-/* ✨ Fade animatsiya */
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.container {
-    animation: fadeUp 0.7s ease;
-}
-
-/* ✨ input focus */
+/* Input fokus bo'lgandagi 3D harakat */
 .input-group input:focus {
     background: #fff;
-    box-shadow: 0 0 8px rgba(141,75,0,0.2);
-}
-
-/* ✨ button hover */
-.btn {
-    transition: 0.3s;
-}
-.btn:hover {
+    border-color: var(--primary);
     transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(141, 75, 0, 0.15);
 }
 
-/* 📱 TABLET */
-@media (max-width: 768px) {
-    body {
-        padding: 20px;
-        align-items: flex-start;
-    }
-
-    .container {
-        padding: 25px;
-        margin-top: 30px;
-    }
+/* 3D Tugma - Original ranglar bilan */
+.btn {
+    width: 100%;
+    height: 46px;
+    border-radius: 12px;
+    background: linear-gradient(45deg, #8D4B00 0%, #B15F00 100%);
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin-top: 8px;
+    /* Tugma tagidagi 3D qavat (Soya emas, qavat) */
+    box-shadow: 0 4px 0px #5e3200; 
+    transition: all 0.1s ease;
 }
 
-/* 📱 MOBILE */
-@media (max-width: 480px) {
-    body {
-        padding: 15px;
-    }
-
-    .container {
-        padding: 20px;
-    }
-
-    .rx {
-        font-size: 20px;
-    }
-
-    .input-group input {
-        height: 42px;
-        font-size: 14px;
-    }
-
-    .btn {
-        height: 42px;
-        font-size: 14px;
-    }
-}   
-
-.toast {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 15px 20px;
-    border-radius: 10px;
-    color: #fff;
-    transform: translateX(120%);
-    transition: 0.4s ease;
-    z-index: 9999;
-    min-width: 220px;
-    overflow: hidden;
-    font-family: Arial;
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 0px #5e3200;
 }
 
-#toast-container {
-    position: fixed;
-    top: 25px;
-    right: 25px;
-    z-index: 9999;
+.btn:active {
+    transform: translateY(3px); /* Bosilish effekti */
+    box-shadow: 0 1px 0px #5e3200;
 }
 
+.login-link {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+.login-link a {
+    color: var(--primary);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* Animatsiyalar */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Toast dizayni (Ranglar saqlangan) */
 .toast {
     background: #ffffff;
-    color: #333;
-    padding: 16px 28px;
-    margin-bottom: 12px;
-    border-radius: 6px;
+    padding: 14px 20px;
+    border-radius: 10px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    font-weight: 500;
-    min-width: 280px;
-    position: relative;
-    overflow: hidden;
-    /* Silliq kirish */
+    border-left: 6px solid var(--primary);
     animation: toastIn 0.4s ease forwards;
 }
 
-.toast.hide {
-    /* Silliq chiqish */
-    animation: toastOut 0.4s ease forwards;
-}
-
-/* Countdown chizig'i (pastida) */
-.toast::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 4px;
-    width: 100%;
-    animation: countdown linear forwards;
-    animation-duration: inherit; /* JS'dan keladi */
-}
-
-/* Success va Error ranglari */
-.toast.success { border-left: 6px solid #2ecc71; }
-.toast.success::after { background: #2ecc71; }
-
-.toast.error { border-left: 6px solid #e74c3c; }
-.toast.error::after { background: #e74c3c; }
-
-/* Animatsiyalar */
-@keyframes toastIn {
-    from { transform: translateX(100%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes toastOut {
-    from { transform: translateX(0); opacity: 1; }
-    to { transform: translateX(120%); opacity: 0; }
-}
-
-@keyframes countdown {
-    from { width: 100%; }
-    to { width: 0%; }
+/* Mobil kichik ekranlar uchun */
+@media (max-height: 700px) {
+    .container { padding: 15px 25px; gap: 7px; }
+    .input-group input { height: 38px; }
+    .rx { font-size: 20px; }
 }

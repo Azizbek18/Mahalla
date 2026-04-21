@@ -1,3 +1,14 @@
+/* 1. Global Sozlamalar */
+:root {
+    --primary: #b65a00;
+    --primary-dark: #92400E;
+    --accent: #a65d1d;
+    --bg-main: #e8e1d7;
+    --bg-card: #f6f2eb;
+    --bg-search: #efe9df;
+    --shadow-3d: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -6,540 +17,360 @@
 }
 
 body {
-    background: #e8e1d7;
+    background: var(--bg-main);
     padding: 25px 60px;
     color: #333;
+    line-height: 1.6;
+    scroll-behavior: smooth;
 }
 
-.navbar nav a {
-    cursor: pointer;
-    text-decoration: none;
-    color: #555; /* Odatiy rang */
-    transition: all 0.3s ease;
-    padding-bottom: 2px;
-}
-
-.navbar nav a:hover {
-    color: #a65d1d;
-    text-decoration: underline;
-}
-
-.navbar nav a.active {
-    color: #a65d1d;
-    font-weight: 600;
-}
-
-.tags span {
-    display: inline-block;
-    padding: 8px 18px;
-    margin: 5px;
-    background-color: #e9e2d7;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 14px;
-    color: #333;
-}
-
-.tags span:hover, .tags span.selected {
-    background-color: #a65d1d;
-    color: #ffffff; 
-}
-
+/* 2. Navbar */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 25px;
+    margin-bottom: 35px;
+    animation: fadeDown 0.8s ease;
 }
 
-.logo {
-    font-weight: 600;
-    color: #b65a00;
-    font-size: 20px;
+.OnaRetsept {
+    color: var(--primary-dark);
+    font-weight: 900;
+    font-size: 26px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-nav a {
-    margin: 0 12px;
-    color: #666;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-nav .active {
-    color: #b65a00;
-    font-weight: 500;
-    border-bottom: 2px solid #b65a00;
-}
-
-.add-btn {
-    background: #b65a00;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-.search-box {
-    background: #efe9df;
-    padding: 25px;
-    border-radius: 12px;
-    margin-bottom: 20px;
-}
-
-.search-input {
+.navbar nav {
     display: flex;
-    margin: 15px 0;
-}
-
-.search-input input {
-    flex: 1;
-    padding: 12px;
-    border: none;
-    border-radius: 8px 0 0 8px;
-    background: #ddd6cc;
-}
-
-.search-input button {
-    background: #b65a00;
-    color: white;
-    border: none;
-    padding: 12px 18px;
-    border-radius: 0 8px 8px 0;
-    cursor: pointer;
-}
-
-.category button {
-    background: none;
-    border: none;
-    padding: 10px 5px;
-    font-size: 16px;
-    color: #555;
-    cursor: pointer;
-    position: relative;
-    transition: 0.3s;
-    font-family: 'Poppins', sans-serif;
-}
-
-.category button:hover {
-    color: #a65d1d;
-}
-
-.category button.active {
-    color: #a65d1d;
-    color: white;
-    font-weight: 600;
-}
-
-.category button.active::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 3px;
-    background-color: #a65d1d;
-    bottom: 0;
-    left: 0;
+    gap: 25px;
 }
 
 .navbar nav a {
-    text-decoration: none !important;
+    cursor: pointer;
+    text-decoration: none;
     color: #555;
+    font-weight: 500;
+    padding-bottom: 5px;
     position: relative;
-    padding-bottom: 8px;
+    transition: 0.3s ease;
+}
+
+.navbar nav a.active {
+    color: var(--primary);
+    font-weight: 700;
 }
 
 .navbar nav a.active::after {
     content: '';
     position: absolute;
-    width: 100%;
-    height: 3px;
-    background-color: #a65d1d;
     bottom: 0;
     left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--primary);
+    border-radius: 10px;
+}
+
+/* 3. 3D Tugmalar */
+.add-btn,
+#find-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #824100;
+    transition: all 0.1s ease;
+}
+
+.add-btn:hover,
+#find-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 #824100;
+}
+
+.add-btn:active,
+#find-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 #824100;
+}
+
+/* 4. Qidiruv Bo'limi */
+.search-box {
+    background: var(--bg-search);
+    padding: 40px;
+    border-radius: 24px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow-3d);
+}
+
+.search-input-container {
+    display: flex;
+    background: #ddd6cc;
+    border-radius: 15px;
+    padding: 8px;
+    margin: 25px 0;
+    align-items: center;
+    gap: 10px;
+}
+
+.tag-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    flex: 1;
+}
+
+.tag-wrapper input {
+    border: none;
+    background: transparent;
+    outline: none;
+    min-width: 150px;
+    flex: 1;
+    height: 40px;
+    font-size: 16px;
+}
+
+/* Input ichidagi taglar */
+.input-tag {
+    background: var(--primary);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    animation: tagPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .tags span {
-    background: #ddd6cc;
-    padding: 6px 12px;
-    border-radius: 20px;
-    margin-right: 8px;
-    font-size: 12px;
+    padding: 8px 20px;
+    background-color: #ddd6cc;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 14px;
 }
 
+.tags span:hover {
+    background-color: var(--accent);
+    color: #fff;
+}
+
+/* 5. Sizga mos retseptlar (Popular) */
 .popular {
     background: #f3eee6;
-    padding: 20px;
-    border-radius: 12px;
-    margin-bottom: 25px;
+    padding: 25px 35px;
+    border-radius: 20px;
+    margin-bottom: 35px;
 }
 
-.popular ul {
-    margin-top: 10px;
+.popular h4 {
+    margin-bottom: 15px;
+    color: #555;
 }
 
-.a-con{
+.popular .ul {
     display: flex;
-    flex-direction: column;
-    gap: 14px;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
-.a-con a{
-    color: #b65a00;
-    text-decoration: none;
-    font-weight: 900;
+.li-con {
+    list-style: none;
 }
 
-.ul{
+.li-con li {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-weight: 600;
 }
 
-.popular li {
-    display: flex;
-    gap: 10px;
-    margin: 8px 0;
+.li-con span {
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
 }
 
+.Green span {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.orange span {
+    background: #ffedd5;
+    color: #9a3412;
+}
+
+.a-con a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 800;
+    display: block;
+    margin-bottom: 10px;
+    transition: 0.3s;
+}
+
+.a-con a:hover {
+    opacity: 0.7;
+}
+
+/* 6. Kategoriya */
 .category {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 10px;
 }
 
 .category button {
     border: none;
     background: #ddd6cc;
-    padding: 8px 14px;
-    border-radius: 20px;
-    margin-right: 8px;
+    padding: 10px 22px;
+    border-radius: 12px;
     cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+    white-space: nowrap;
+    box-shadow: 0 4px 0 #b9b1a5;
 }
 
-.category .active {
-    background: #b65a00;
+.category button.active {
+    background: var(--primary);
     color: white;
+    box-shadow: 0 4px 0 #7e3e00;
 }
 
+/* 7. Retsept Kartochkalari */
 .recipes {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
 }
 
 .card {
-    height: 370px;
-    background: #f6f2eb;
-    border-radius: 12px;
+    background: var(--bg-card);
+    border-radius: 22px;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    transition: 0.3s;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    opacity: 0;
 }
 
-.OnaRetsept {
-    color: #92400E;
-    font-weight: 900;
-    font-size: 24px;
-    line-height: 32px;
-    letter-spacing: 0px;
-    vertical-align: middle;
+.card.show {
+    opacity: 1;
+    animation: cardEntry 0.6s ease forwards;
 }
 
-.ul .Green span{
-    background: rgba(172, 255, 47, 0.463);
-    padding: 1px 10px;
-    color: rgb(32, 162, 32);
-    font-weight: 900;
-    border-radius: 20px;
-}
-
-.ul .orange span{
-    background: rgba(255, 189, 67, 0.628);
-    padding: 1px 10px;
-    color: orange;
-    font-weight: 900;
-    border-radius: 20px;
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
 .card img {
     width: 100%;
-    height: 270px;
+    height: 220px;
     object-fit: cover;
 }
 
+.card-content {
+    padding: 20px;
+}
+
 .card h4 {
-    padding: 10px 15px 0;
+    margin-bottom: 5px;
+    font-size: 18px;
 }
 
 .card p {
-    padding: 0 15px;
-    font-size: 13px;
     color: #777;
+    font-size: 14px;
+    margin-bottom: 15px;
 }
 
-.card span {
-    display: block;
-    padding: 10px 15px 15px;
-    font-size: 12px;
-    color: #555;
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.navbar nav a {
-    text-decoration: none;
-    color: #555; 
-    cursor: pointer;
-    display: inline-block;
-    padding-bottom: 5px; 
-    position: relative;
-    transition: 0.3s;
+.card-footer span {
+    font-weight: 700;
+    color: var(--primary);
 }
 
-.navbar nav a:hover,
-.navbar nav a.active {
-    color: #a65d1d;
-}
-
-.navbar nav a.active::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    background-color: #a65d1d; 
-    bottom: 0;
-    left: 0;
-}
-
-.tags span {
-    display: inline-block;
-    padding: 8px 18px;
-    margin: 5px;
-    background-color: #eee;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-    color: #333;
-}
-
-.tags span.selected {
-    background-color: #a65d1d;
-    color: #ffffff;
-}
-
-.more {
-    text-align: center;
-    margin-top: 30px;
-}
-
-.more button {
-    border: 1px solid #b65a00;
+.view-recipe {
     background: transparent;
-    padding: 10px 20px;
-    border-radius: 8px;
-    color: #b65a00;
+    border: none;
+    font-size: 20px;
+    color: var(--primary);
     cursor: pointer;
 }
 
-/* 🔥 Fade + slide animatsiya */
-@keyframes fadeUp {
+/* 8. Animatsiyalar */
+@keyframes tagPop {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeDown {
     from {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(-20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-/* 🔥 Navbar kirish */
-.navbar {
-    animation: fadeUp 0.7s ease;
+@keyframes cardEntry {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* 🔥 Search box */
-.search-box {
-    animation: fadeUp 0.8s ease;
-}
-
-/* 🔥 Popular block */
-.popular {
-    animation: fadeUp 0.9s ease;
-}
-
-/* 🔥 Category */
-.category {
-    animation: fadeUp 1s ease;
-}
-
-/* 🔥 Card animatsiya */
-.card {
-    transform: translateY(40px);
-    opacity: 0;
-    transition: all 0.5s ease;
-}
-
-.card.show {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-/* 🔥 Hover zoom */
-.card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-}
-
-/* 🔥 Button hover */
-button {
-    transition: all 0.3s ease;
-}
-
-button:hover {
-    transform: translateY(-3px) scale(1.03);
-}
-
-/* 🔥 Tag bosilganda pulse */
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.15); }
-    100% { transform: scale(1); }
-}
-
-.tags span:active {
-    animation: pulse 0.3s ease;
-}
-
-/* 🔥 Category click effekt */
-.category button.active {
-    transform: scale(1.1);
-}
-
-/* 🔥 Smooth sahifa */
-body {
-    scroll-behavior: smooth;
-}
-
-/* =========================
-   📱 TABLET (768px gacha)
-========================= */
+/* Responsive */
 @media (max-width: 768px) {
-
-    body {
-        padding: 20px;
-    }
-
-    .navbar {
-        flex-direction: column;
-        gap: 10px;
-        align-items: flex-start;
-    }
-
-    .navbar nav {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-
-    .add-btn {
-        width: 100%;
-        text-align: center;
-    }
-
-    .search-box {
-        padding: 20px;
-    }
-
-    .search-input {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .search-input input,
-    .search-input button {
-        width: 100%;
-        border-radius: 8px;
-    }
-
-    .recipes {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .card {
-        height: auto;
-    }
-
-    .card img {
-        height: 200px;
-    }
-}
-
-/* =========================
-   📱 MOBILE (480px gacha)
-========================= */
-@media (max-width: 480px) {
-
     body {
         padding: 15px;
     }
 
-    .OnaRetsept {
-        font-size: 20px;
-    }
-
-    .navbar nav {
-        justify-content: center;
-        width: 100%;
-    }
-
     .navbar {
-        align-items: center;
-        text-align: center;
-    }
-
-    .search-box h3 {
-        font-size: 18px;
-    }
-
-    .search-box p {
-        font-size: 13px;
-    }
-
-    .tags {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .category {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        justify-content: center;
-    }
-
-    .category button {
-        font-size: 13px;
-        padding: 6px 10px;
-    }
-
-    .recipes {
-        grid-template-columns: 1fr;
-    }
-
-    .card img {
-        height: 180px;
+        flex-direction: column;
+        gap: 15px;
     }
 
     .popular .ul {
         flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-
-    .a-con {
-        flex-direction: row;
-        gap: 10px;
-    }
-
-    .more button {
-        width: 100%;
     }
 }
