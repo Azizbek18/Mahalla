@@ -336,3 +336,21 @@ nav .active {
     color: #b65a00;
     cursor: pointer;
 }
+
+@media (max-width:768px) {
+    .recipes{
+    grid-template-columns: repeat(1, 1fr);
+    }
+    body{
+        padding: 20px;
+    }
+    nav{
+        display: none;
+    }
+    .category{
+        display: none;
+    }
+    .tags{
+        display: none;
+    }
+}
