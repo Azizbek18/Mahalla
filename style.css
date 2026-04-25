@@ -1,4 +1,3 @@
-
 * {
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
@@ -22,7 +21,9 @@ body {
     border-radius: 10px;
 }
 
-
+.form-text{
+    text-align: center;
+}
 
 input {
     width: 100%;
@@ -48,6 +49,9 @@ input {
     height: 64px;
     opacity: 1;
 }
+.login-link h4{
+   margin: 0;
+}
 
 button {
     width: 100%;
@@ -62,33 +66,61 @@ button {
     font-size: 15px;
     background-color: #8d4b00;
 }
-.form-text{
+
+.form-text {
     text-align: center;
 }
+
 .form-text a {
     text-decoration: none;
     font-weight: bold;
 }
 
-.form-title{
+.form-title {
     text-align: center;
 }
+
 /* Animatsiyalar kutubxonasi */
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-8px); }
-    75% { transform: translateX(8px); }
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-8px);
+    }
+
+    75% {
+        transform: translateX(8px);
+    }
 }
 
 @keyframes iconPop {
-    0% { transform: scale(0); }
-    80% { transform: scale(1.2); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(0);
+    }
+
+    80% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 body {
@@ -98,15 +130,18 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    overflow: hidden; /* Sahifa yuklanishda ortiqcha scroll bo'lmasligi uchun */
+    overflow: hidden;
+    /* Sahifa yuklanishda ortiqcha scroll bo'lmasligi uchun */
 }
 
 .box {
-    max-width: 380px; /* Biroz kengaytirildi */
+    max-width: 380px;
+    /* Biroz kengaytirildi */
     width: 90%;
     background-color: white;
     padding: 30px;
-    border-radius: 24px; /* Zamonaviyroq yumaloqlik */
+    border-radius: 24px;
+    /* Zamonaviyroq yumaloqlik */
     box-shadow: 0 10px 25px rgba(141, 75, 0, 0.08);
     animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     display: flex;
@@ -161,7 +196,8 @@ input {
     padding: 12px 18px;
     border-radius: 12px;
     outline: none;
-    border: 2px solid transparent; /* Border qo'shildi */
+    border: 2px solid transparent;
+    /* Border qo'shildi */
     background: #F3F1ED;
     margin-top: 8px;
     font-size: 16px;
@@ -208,8 +244,171 @@ button:active {
     color: #FF7A00;
 }
 
-/* Xatolik holati uchun klass */
-.input-error {
-    animation: shake 0.4s ease-in-out;
-    border-color: #e74c3c !important;
+#toast-container {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    z-index: 9999;
+}
+
+.toast {
+    background: #ffffff;
+    color: #333;
+    padding: 16px 28px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    font-weight: 500;
+    min-width: 280px;
+    position: relative;
+    overflow: hidden;
+    /* Silliq kirish */
+    animation: toastIn 0.4s ease forwards;
+}
+
+.toast.hide {
+    /* Silliq chiqish */
+    animation: toastOut 0.4s ease forwards;
+}
+
+/* Countdown chizig'i (pastida) */
+.toast::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    width: 100%;
+    animation: countdown linear forwards;
+    animation-duration: inherit; /* JS'dan keladi */
+}
+
+/* Success va Error ranglari */
+.toast.success { border-left: 6px solid #2ecc71; }
+.toast.success::after { background: #2ecc71; }
+
+.toast.error { border-left: 6px solid #e74c3c; }
+.toast.error::after { background: #e74c3c; }
+
+/* Animatsiyalar */
+@keyframes toastIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes toastOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(120%); opacity: 0; }
+}
+
+@keyframes countdown {
+    from { width: 100%; }
+    to { width: 0%; }
+}
+
+/* =========================
+   📱 TABLET (768px gacha)
+========================= */
+@media (max-width: 768px) {
+
+    body {
+        padding: 20px;
+    }
+
+    .box {
+        width: 100%;
+        max-width: 400px;
+        padding: 25px;
+        border-radius: 18px;
+    }
+
+    .form-title {
+        font-size: 22px;
+    }
+
+    .form-text {
+        font-size: 13px;
+    }
+
+    input {
+        height: 45px;
+        font-size: 15px;
+    }
+
+    button {
+        height: 45px;
+        font-size: 15px;
+    }
+}
+
+/* =========================
+   📱 MOBILE (480px gacha)
+========================= */
+@media (max-width: 480px) {
+
+    body {
+        padding: 15px;
+        align-items: flex-start;
+        /* tepaga chiqadi */
+    }
+
+    .box {
+        backdrop-filter: blur(10px);
+    }
+
+    .box {
+        width: 100%;
+        padding: 20px;
+        border-radius: 16px;
+        margin-top: 30px;
+    }
+
+    .background {
+        width: 60px;
+        height: 60px;
+    }
+
+    .background img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .form-title {
+        font-size: 20px;
+    }
+
+    .form-text {
+        font-size: 12px;
+        margin-bottom: 15px;
+    }
+
+    .input-group {
+        margin-bottom: 12px;
+    }
+
+    input {
+        height: 42px;
+        padding: 10px 14px;
+        font-size: 14px;
+    }
+
+    button {
+        height: 42px;
+        font-size: 14px;
+    }
+
+    label {
+        font-size: 11px;
+    }
+
+    /* 🔔 Toast ham moslashadi */
+    .toast {
+        width: 90%;
+        right: -100%;
+        top: 15px;
+    }
+
+    .toast.show {
+        right: 5%;
+    }
 }

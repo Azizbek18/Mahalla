@@ -3,10 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>OnaRetsept</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div id="toast-container"></div>
     <div class="box">
       <div class="background">
         <img src="./Container.svg" alt="" />
@@ -16,14 +17,17 @@
       <form>
         <div class="input-group">
           <label for="">Email kiriting</label>
-          <input class="input" type="text" placeholder="+998 90 123 45 67" />
+          <input class="input" type="text" placeholder="example@gmail.com" />
         </div>
+        -
         <div class="input-group">
           <label class="">Parol kiriting</label>
-          <input class="input" type="text" placeholder="••••••••" />
+          <input class="input" type="password" placeholder="••••••••" />
         </div>
         <button>Kirish</button>
-        <p class="form-text">Hisobingiz yo'qmi? <a href="#">Ro'yhatdan o'ting</a></p>
+        <p class="form-text">
+          Hisobingiz yo'qmi? <a href="login.html">Ro'yhatdan o'ting</a>
+        </p>
       </form>
     </div>
     <script src="script.js"></script>

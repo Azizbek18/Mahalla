@@ -1,31 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="uz">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>OnaRetsept - Mazali taomlar bazasi</title>
     <link rel="stylesheet" href="onaretsept.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <header class="navbar">
         <h2 class="OnaRetsept">OnaRetsept</h2>
         <nav>
-            <a class="active">Bosh Sahifa</a>
-            <a>Saqlanganlar</a>
-            <a>Qidiruv</a>
+            <a href="#" class="active">Bosh Sahifa</a>
+            <a href="#">Saqlanganlar</a>
+            <a href="#">Qidiruv</a>
         </nav>
-        <button class="add-btn">Retsept qo'shish</button>
+        <button class="add-btn">Retsept qo'shish +</button>
     </header>
+
     <section class="search-box">
         <h3>🍲 Mazali ovqat toping</h3>
-        <p>Uyda nima bor? Qidiruv orqali retsept toping</p>
-        <div class="search-input">
-            <input type="text" placeholder="Masalliqlar kiriting...">
-            <button>Topish →</button>
+        <p>Uyda nima bor? Yozing — AI mos retsept topadi</p>
+        
+        <div class="search-input-container">
+            <div id="tag-wrapper" class="tag-wrapper">
+                <input type="text" id="recipe-search" placeholder="Masalliq kiriting...">
+            </div>
+            <button id="find-btn">Topish →</button>
         </div>
+
         <div class="tags">
             <span>Kartoshka</span>
             <span>Go'sht</span>
@@ -33,24 +37,27 @@
             <span>Piyoz</span>
             <span>Guruch</span>
             <span>Tuxum</span>
+            <span>Un</span>
             <span>Pomidor</span>
         </div>
     </section>
+
     <section class="popular">
-        <h4>Sizga mos retseptlar</h4>
-        <ul class="ul">
+        <h4>Sizga mos retseptlar:</h4>
+        <div class="ul">
             <div class="li-con">
-                <li class="Green">• Mastava <span>98%</span>
-                <li class="orange">• Qovurma <span>88%</span>
-                <li class="orange">• Shorva <span>82%</span>
+                <li class="Green">• Mastava <span>98%</span></li>
+                <li class="orange">• Qovurma <span>88%</span></li>
+                <li class="orange">• Sho'rva <span>82%</span></li>
             </div>
             <div class="a-con">
-                </li><a class="end" href="#">Ko'rish⇨</a>
-                </li><a class="end" href="#">Ko'rish⇨</a>
-                </li><a class="end" href="#">Ko'rish⇨</a>
+                <a class="end" href="#">Ko'rish →</a>
+                <a class="end" href="#">Ko'rish →</a>
+                <a class="end" href="#">Ko'rish →</a>
             </div>
-        </ul>
+        </div>
     </section>
+
     <div class="category">
         <button class="active">Hammasi</button>
         <button>Birinchi taom</button>
@@ -59,48 +66,26 @@
         <button>Non</button>
         <button>Shirinlik</button>
     </div>
-    <section class="recipes">
+
+    <section class="recipes" id="recipes-grid">
         <div class="card">
-            <img src="Images/osh.png">
-            <h4>Toshkent oshi</h4>
-            <p>Nodira opa, Toshkent</p>
-            <span>⏱ 1 soat</span>
-        </div>
-        <div class="card">
-            <img src="Images/somsa.png">
-            <h4>Somsa</h4>
-            <p>Malika opa, Samarqand</p>
-            <span>⏱ 25 min</span>
-        </div>
-        <div class="card">
-            <img src="Images/lagmon.png">
-            <h4>Lag'mon</h4>
-            <p>Zulfiya opa, Farg'ona</p>
-            <span>⏱ 40 min</span>
-        </div>
-        <div class="card">
-            <img src="Images/Background (5).svg">
-            <h4>Chuchvara</h4>
-            <p>Gulnora opa</p>
-            <span>⏱ 30 min</span>
-        </div>
-        <div class="card">
-            <img src="Images/non.png">
-            <h4>Non tandirda</h4>
-            <p>Fatima opa</p>
-            <span>⏱ 35 min</span>
-        </div>
-        <div class="card">
-            <img src="Images/halim.png">
-            <h4>Halim</h4>
-            <p>Shahnoza opa</p>
-            <span>⏱ 2 soat</span>
+            <img src="Images/osh.png" alt="Toshkent oshi">
+            <div class="card-content">
+                <h4>Toshkent oshi</h4>
+                <p>👤 Nodira opa, Toshkent</p>
+                <div class="card-footer">
+                    <span>⏱ 1s 20d</span>
+                    <button class="view-recipe">→</button>
+                </div>
+            </div>
         </div>
     </section>
+
     <div class="more">
-        <button>Ko'proq yuklash</button>
+        <button id="load-more">Ko'proq yuklash</button>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="onaretsept.js"></script>
 </body>
-
 </html>
